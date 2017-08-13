@@ -1,0 +1,79 @@
+<%%= form_for(<%= singular_table_name %>) do |f| %>
+
+<div class="row">
+  <div class="col-lg-6">
+     <div class="panel panel-primary">
+       <div class="panel-heading">
+         <h3 class="panel-title">Ihr neues Ihr neues <%= singular_table_name %></h3>
+       </div>
+     </div>
+
+
+      <% attributes.each do |attribute| -%>
+        <div class="form-group">
+      <% if attribute.password_digest? -%>
+          <%%= f.label :password ,"Passwort", class: "control-label" %>
+          <%%= f.password_field :password  , class: "form-control"%>
+        </div>      
+
+        <div class="form-group">
+          <%%= f.label :password_confirmation ,"Passwort wiederholen", class: "control-label"%>
+          <%%= f.password_field :password_confirmation , class: "form-control" %>
+      <% else -%>
+          <%%= f.label :<%= attribute.column_name %> ,"<%=attribute.column_name %>", class: "control-label" %>
+          <%%= f.<%= attribute.field_type %> :<%= attribute.column_name %>, class: "form-control" %>
+      <% end -%>
+        </div>      
+
+      <% end -%>
+        <div class="actions">
+          <%%= f.submit "Speichern", class: " btn btn-submit", id: "<%=singular_table_name%>_submit" %>
+        </div>
+      <%% end %>  
+  </div>
+</div>
+
+
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+
+                                    <h3 class="panel-title">Ihr neues Rezept</h3>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <%= f.label :name, "Name" %>
+                                    <%= f.text_field :name, class: "form-control" %>
+                            </div>
+
+                            <div class="form-group">
+                                <%= f.label :preptime, "Zeitaufwand" %>
+                                    <%= f.select :preptime, droptime(15, 10), {}, class: "form-control" %>
+                            </div>
+
+                            <div class="form-group">
+                                <%= f.label :price, "Preis"%>
+                                    <%= f.text_field :price, class: "form-control" %>
+                            </div>
+
+                            <div class="form-group">
+                                <%= f.label :yield, "Portionen" %>
+                                    <%= f.number_field :yield, class: "form-control" %>
+                            </div>
+
+                            <div class="form-group">
+                                <%= f.label :ingredients, "Zutaten" %>
+                                    <%= f.text_area :ingredients, class: "form-control" %>
+                            </div>
+
+                            <div class="actions">
+                            <%= f.submit "Speichern", class: "btn btn-success", id: "recipe_submit" %>
+                         
+     
+
+                            </div>
+
+                            <div id="feedback">
+                                
+                            </div>
+                      

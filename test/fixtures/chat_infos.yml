@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  partner_id: 1
+  active: false
+  open: false
+
+two:
+  user: two
+  partner_id: 1
+  active: false
+  open: false

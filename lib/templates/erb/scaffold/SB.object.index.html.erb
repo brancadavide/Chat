@@ -1,0 +1,55 @@
+<div class="container-fluid">
+	<div class="jumbotron">
+		<div class="page-header">
+			<h1><%= plural_table_name.titleize %><small>kurze Erkl&auml;rung</small></h1>
+		</div>
+	</div>
+</div>
+
+
+
+<div class="container-fluid">
+	<div class="col-lg-4">
+
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+
+				<h3 class="panel-title">Navigation</h3>
+
+			</div>
+			</div>
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<ul class="list-group">
+
+					<li class="list-group-item list-head-primary">
+						<input type="search" class="form-control" id="search" placeholder="ihre Such- Paramater bitte">
+
+					</li>
+					<li class="list-group-item">
+						<a href="#" class="btn btn-primary btn-lg" role="button"><span class="glyphicon glyphicon-tag"></span> <br/>Home</a>
+					</li>
+
+					<li class="list-group-item">
+
+						<div class="actions">
+                        <%%= f.submit "Speichern", class: "btn btn-success", id: "<%= singular_table_name%>_submit " %><span class="glyphicon glyphicon-bookmark"></span>
+                        </div>
+
+						<%%= link_to 'Bearbeiten', <%=singular_table_name_path(@singular_table_name_path)%>, class: "btn btn-success" %><span class="glyphicon glyphicon-bookmark"></span> 
+
+                        <%%= link_to 'Löschen', <%= @singular_table_name%>, method: :delete, data: { confirm: 'Sind sie sich sicher ?' }, class: "btn btn-danger"%><span class="glyphicon glyphicon-list-alt"></span>
+
+					</li>
+
+					 	<%%= link_to 'Support', "http://www.yield-in.de/", :target => "_blank", class: "btn btn-info btn-lg btn-block"%><span class="glyphicon glyphicon-globe">
+				</ul>
+			</div>
+		</div>
+
+			</thead>
+
+  <div id="<%= plural_table_name %>">
+      <%%=render "table" %>
+  </div>

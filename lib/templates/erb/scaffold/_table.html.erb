@@ -1,0 +1,26 @@
+<table class="table table-condensed">
+  <thead>
+    <tr>
+<% attributes.reject(&:password_digest?).each do |attribute| -%>
+      <th><%= attribute.human_name %></th>
+<% end -%>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%% @<%= plural_table_name %>.each do |<%= singular_table_name %>| %>
+      <tr class="rowlink" id="<%%= <%= singular_table_name %>_path(<%= singular_table_name %>) %>" >
+<% attributes.reject(&:password_digest?).each do |attribute| -%>
+        <td><%%= <%= singular_table_name %>.<%= attribute.name %> %></td>
+<% end -%>
+      </tr>
+    <%% end %>
+  </tbody>
+</table>
+
+
+<script type="text/javascript">
+  $(".rowlink").on("click keyup", function(e) {
+      window.location.href = $(this).attr('id');
+    });
+</script>

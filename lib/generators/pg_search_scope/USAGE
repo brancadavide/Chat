@@ -1,0 +1,13 @@
+Description:
+   Generates search-string entry in given Model to setup pg_search_scope
+
+Example:
+    rails generate pg_search_scope Example <column_name 1> <column_name 2> ...
+
+    This will create:
+        in the given Model:
+
+        "Example < ApplicationRecord
+ 					include PgSearch
+  					pg_search_scope :search_example, against: [:<column_name 1>,:<column_name 2>], using: { tsearch: { prefix: true} }
+ 				"

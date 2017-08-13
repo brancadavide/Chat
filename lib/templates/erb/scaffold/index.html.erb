@@ -1,0 +1,13 @@
+
+
+<h1><%= plural_table_name.titleize %></h1>
+
+  <div id="<%= plural_table_name %>">
+      <%%=render "table" %>
+  </div>
+  
+
+
+<br>
+
+<%%= link_to 'New <%= singular_table_name.titleize %>', new_<%= singular_table_name %>_path, class: "btn btn-link" %>

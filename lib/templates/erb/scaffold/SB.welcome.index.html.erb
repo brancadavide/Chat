@@ -1,0 +1,30 @@
+<header class="header-image">
+	<div class="headline">
+		<div class="container">
+			<h1><%= plural_table_name.titleize %></h1>
+			<h2>kurze Beschreibung</h2>
+		</div>
+	</div>
+</header>
+
+
+<div class="container-fluid">
+	<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+		<div class="container-fluid">
+			<div class="navbar-header">
+
+				<a class="navbar-brand" href="#">Navbarbeschriftung</a>
+			</div>
+			<ul class="nav navbar-nav nav nav-pills">
+				<li>
+					<%%= link_to '<%= singular_table_name.titleize %>', <%= singular_table_name %>_path, class: "btn btn-default" %>
+				</li>
+
+			</ul>
+
+		</div>
+	</nav>
+</div>
+
+<br></br>
+

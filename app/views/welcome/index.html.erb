@@ -1,0 +1,55 @@
+<h1>Chat <small>logged in as: <%=current_user.email%></small></h1>
+
+<div ng-controller = "UserController">
+	<div class="row">
+		<div class="col-lg-3">
+				<h2>Users </h2>
+				
+						<ul class="list-group" >
+							<li ng-repeat= "user in online_users" class="list-group-item {{user.subscribedClass}} {{user.active | activeState:user.active }}"><button class="btn btn-link link-black" ng-click="getChat(user)">{{user.email}}</h4></button>
+						</ul>
+				
+		</div>
+		
+		<div class="col-lg-9">
+			<h2><small>Chat mit:</small> <span ng-show="chat_active()" ng-model="current_chat_partner">{{current_chat_partner}}</span><small ng-hide="chat_active()">Bitte einen User aus der Liste links ausw&auml;hlen!</small></h2>	
+			<div ng-show="chat_active()" class="panel panel-success" style="max-width: 650px;">
+				
+					<div class="panel-body " >
+						<div class="message-box">
+							
+						<div class="message {{ m.own | messageClass }}" ng-repeat="m in messages">
+								<div class="{{ m.own | popoverClass:m.own }} show message" role="tooltip" >
+									<div class="arrow"></div>
+										<div class="popover-content">
+											<p> {{m.body}} <br/><small>{{ m.written_at }}</small></p>
+											
+										</div>
+								</div>
+								<small ng-show="m.own">{{ m.status | messageStatus: m.status_at }}</small></p>
+							</div>
+
+							<p><em ng-show="is_writing">{{current_chat_partner}} schreibt gerade</em></p>
+						</div>
+					</div>
+				<div class="panel-footer">
+					  <div class="input-group" >
+ 					     <input type="text" class="form-control" ng-blur="writing_message_notification(false)" ng-focus="writing_message_notification(true)" ng-model="message" placeholder="Nachricht...">
+					      <span class="input-group-btn">
+					        <button class="btn btn-default" ng-click="submit()" type="button">Go!</button>
+					    </span>
+    			</div><!-- /input-group -->
+				</div>
+			</div>
+		</div>	
+	</div>
+
+	<br>
+	<h2 class="online-{{status}}">{{ status | online:status }}</h2>
+	<br>
+	<button class="btn btn-success" ng-hide="status" ng-click= "onlineStatus.subscribe(appUser)" >Online gehen</button>
+	<button class="btn btn-default" ng-show="status" ng-click= "onlineStatus.unsubscribe(appUser)" >Offline gehen</button>
+	<%= link_to "Logout", destroy_user_session_path,method: :delete, class: "btn btn-link" %>
+	
+
+</div>

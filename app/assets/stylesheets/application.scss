@@ -1,0 +1,99 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "bootstrap-datepicker3";
+
+
+body {
+	padding: 60px;
+}
+
+.rowlink {
+	cursor: pointer;
+}
+
+li.user-subscribed:before {
+	content: "\25CF";
+	color: #4cae4c;
+}
+
+li.user-unsubscribed:before {
+	content: "\25CF";
+	color: #000;
+}
+
+
+
+li.user-subscribed>p {
+	color: #000;
+}
+
+.online-true {
+	color: #4cae4c;
+}
+
+.link-black,
+.link-black:hover,
+.link-black:active,
+.link-black:focus,
+.link-black:visited {
+	color: #000;
+	font-size: 2rem;
+	text-decoration: none;
+	outline: none !important;
+	box-shadow: none;
+}
+
+.message-box {
+	height: 40vh;
+	max-width: 640px;
+	overflow-y: auto;
+}
+
+.message {
+	position: relative;
+	width: 100%;
+	height: auto;
+	padding-bottom: 10px;
+}
+
+
+.message.received {
+	padding-left: 10px; 
+}
+
+.message.sent {
+	padding-left: 300px;
+}
+
+.popover-content>p {
+	font-size: 1.6rem; 
+}
+.popover-content>p>small {
+	font-size: 1rem;
+	font-style: italic;
+	 
+}
+
+.message.sent .popover-content>p {
+	font-size: 1.6rem;
+	color: #010101; 
+}
+.message.sent .popover-content>p>small {
+	font-size: 1rem;
+	font-style: italic;
+	 
+}
+
+.message.received .popover-content>p {
+	font-size: 1.6rem;
+	color: #000;
+	font-weight: bold; 
+}
+.message.received .popover-content>p>small {
+	font-size: 1rem;
+	font-style: italic;
+	font-weight: normal;
+	 
+}
+
+
