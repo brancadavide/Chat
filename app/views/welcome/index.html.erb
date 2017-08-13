@@ -26,10 +26,10 @@
 											
 										</div>
 								</div>
-								<small ng-show="m.own">{{ m.status | messageStatus: m.status_at }}</small></p>
+								<small ng-show="m.own"><i class="glyphicon glyphicon-ok {{m.status}}"></i> {{ m.status | messageStatus: m.status_at }}</small></p>
 							</div>
 
-							<p><em ng-show="is_writing">{{current_chat_partner}} schreibt gerade</em></p>
+							<p id="bottom"><em ng-show="is_writing">{{current_chat_partner}} schreibt gerade</em></p>
 						</div>
 					</div>
 				<div class="panel-footer">

@@ -113,7 +113,7 @@
 				});
 
 
-				app.controller("UserController",function($scope,$http,ChatChannels,OnlineStatus){
+				app.controller("UserController",function($scope,$http,$anchorScroll,ChatChannels,OnlineStatus){
 					
 					// stores the authenticity token required when submitting messages via post
 					$scope.authenticity_token = $("meta[name='csrf-token']").attr('content');
@@ -138,6 +138,31 @@
 
 					// se above 'factory OnlineStatus' , switch classname	
 					$scope.onlineStatus = OnlineStatus;	
+					
+					//  initiates the basic communication channel between users
+					//  
+					
+					$scope.appUser = App.cable.subscriptions.create("UserChannel", {
+
+								// submits the users online status if changed
+							  status: function(status) {
+							  	return this.perform('status', { subscribe: status})
+							  },
+
+							  // updates the userlist if something changes (other users goes on- or offline )					
+							  received: function(data) {
+							  			if(data.online_users) {
+											   			$scope.$apply(function() {
+												   			// update userlist
+												   			$scope.online_users= data.online_users;
+												  			
+												  			// ng-show
+												  			$scope.status = data.user.subscribed;	
+										  				});
+										  } 
+							 	}
+						});
+
 
 					// after pageload don't show the message-window as long no user to chat with is chosen(ng-show)
 					$scope.chat_active = function() { 
@@ -151,7 +176,7 @@
 						$scope.chat_channels.getChannel(chat_id).send({ is_writing: focus, chat_id: chat_id })
 					}
 
-					// submit ne message via ajax, clears the input field after submit
+					// submit new message via ajax, clears the input field after submit
 					$scope.submit = function() {
 						$http.post("/welcome/message.json",JSON.stringify( { message: { body: $scope.message, chat_info_id: $scope.current_chat_channel }, authenticity_token: $scope.authenticity_token } ))
 								 .then(function(response) {
@@ -199,6 +224,8 @@
 																	$scope.online_users;
 																})
 
+															
+
 															// if the object contains the key 'is_writing', a notification will show up, that the current chat partner
 															// is currently writing a message(wich means that at least his input field has focus)
 															// 'is_writing' returns a boolean, to explicitely show or hide the notification
@@ -208,7 +235,10 @@
 								    							$scope.is_writing = data.is_writing;
 								    						})	
 								    		
-								    					} 
+								    					}
+
+								    				// scroll to bottom 	
+								    				$anchorScroll('bottom'); 
 								  			},								
 
 								  		// sends a request through the channel, when a message has been seen by the receiver, to update the status
@@ -228,6 +258,8 @@
 							return chatChannel;	
 					} 
 
+					// triggered by the user choosing a chat-partner
+					// sends an ajax-request submitting the chat-partner-id
 					$scope.getChat = function(partner) {
 						var partner = partner;
 
@@ -237,32 +269,16 @@
 							params: { partner_id: partner.partner_id }
 							
 						}).then(function(response) {
-							var id = response.data.chat.id;
-							var chat = $scope.chat_channel( id );
-							$scope.current_chat_channel = id; 
-					
-							$scope.current_chat_partner = partner.email;
+								var id = response.data.chat.id;
+								var chat = $scope.chat_channel( id );
+									$scope.current_chat_channel = id; 
+									$scope.current_chat_partner = partner.email;
 								
 						});
 					}					
 
 					
-					$scope.appUser = App.cable.subscriptions.create("UserChannel", {
-
-					  status: function(status) {
-					  	return this.perform('status', { subscribe: status})
-					  },			
-
-					  received: function(data) {
-					  			console.log(data);
-					  			if(data.online_users) {
-									   			$scope.$apply(function() {
-										   			$scope.online_users= data.online_users;
-										  			$scope.status = data.user.subscribed;	
-								  				});
-								  } 
-					 	}
-				});
+					
 
 		});
 
