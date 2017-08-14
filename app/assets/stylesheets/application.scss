@@ -96,4 +96,13 @@ li.user-subscribed>p {
 	 
 }
 
+li.active>button,
+li.active>button:hover,
+li.active>button:active,
+li.active>button:focus {
+	color: #FFF;
+	text-decoration: none;
+}
+
+
 

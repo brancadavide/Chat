@@ -2,7 +2,7 @@
 
 <div ng-controller = "UserController">
 	<div class="row">
-		<div class="col-lg-3">
+		<div class="col-lg-4">
 				<h2>Users </h2>
 				
 						<ul class="list-group" >
@@ -11,7 +11,7 @@
 				
 		</div>
 		
-		<div class="col-lg-9">
+		<div class="col-lg-8">
 			<h2><small>Chat mit:</small> <span ng-show="chat_active()" ng-model="current_chat_partner">{{current_chat_partner}}</span><small ng-hide="chat_active()">Bitte einen User aus der Liste links ausw&auml;hlen!</small></h2>	
 			<div ng-show="chat_active()" class="panel panel-success" style="max-width: 650px;">
 				
