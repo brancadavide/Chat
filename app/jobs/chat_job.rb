@@ -2,7 +2,8 @@ class ChatJob < ApplicationJob
   queue_as :default
 
   def perform(chat,limit)
-    ChatChannel.broadcast_to chat, messages: get_messages(chat.messages), partner:{ id: chat.id, email: chat.partner.email, subscribed: chat.partner.subscribed,partner_id: chat.partner.id, subscribedClass: chat.partner.subscribedClass,active: chat.active } 
+  	messages = chat.messages
+    ChatChannel.broadcast_to chat, messages: get_messages(messages), partner:{ id: chat.id, email: chat.partner.email, subscribed: chat.partner.subscribed,partner_id: chat.partner.id, subscribedClass: chat.partner.subscribedClass,active: chat.active } 
   end
 
 

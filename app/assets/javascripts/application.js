@@ -69,6 +69,9 @@
 							
 					})
 				});
+
+				// turns integer into boolean for ng-show, 0 == false
+				
 					
 				// service to provide	ne chat-channel-instances, and stores the object to avoid multiple instances for on channel
 				// getChannel: returns an object(the open channel) if exits
@@ -162,6 +165,13 @@
 										  } 
 							 	}
 						});
+
+					$scope.unread_messages = function(count) {
+							return (parseInt(count) > 0)
+							
+				};
+
+
 
 
 					// after pageload don't show the message-window as long no user to chat with is chosen(ng-show)

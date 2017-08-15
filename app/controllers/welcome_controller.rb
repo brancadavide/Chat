@@ -21,7 +21,7 @@ class WelcomeController < ApplicationController
   		partner_chat = partner.chat_infos.where(partner_id: current_user.id).first
 
   		user_message = user_chat.messages.build(body: message_params[:body],status: "sent", user_id: current_user.id)
-  		partner_message = partner_chat.messages.build(body: message_params[:body],status: "received", user_id: current_user.id)
+  		partner_message = partner_chat.messages.build(body: message_params[:body],status: "new", user_id: current_user.id)
 
   		respond_to do |f|
   				if user_message.save and partner_message.save

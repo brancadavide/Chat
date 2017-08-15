@@ -102,7 +102,30 @@ li.active>button:active,
 li.active>button:focus {
 	color: #FFF;
 	text-decoration: none;
+	width: 80%;
 }
+li.active>button span.badge,
+li.active>button:hover span.badge,
+li.active>button:active span.badge,
+li.active>button:focus span.badge {
+	color: #337ab7;
+	background-color:#fff;
+	text-decoration: none;
+	
+}
+
+li.active>button span.badge,
+li.active>button:hover span.badge,
+li.active>button:active span.badge,
+li.active>button:focus span.badge,
+li.active>button i,
+li.active>button:hover i,
+li.active>button:active i,
+li.active>button:focus i {
+	margin-left: 15px;
+
+}
+
 
 
 

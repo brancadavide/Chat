@@ -6,7 +6,15 @@
 				<h2>Users </h2>
 				
 						<ul class="list-group" >
-							<li ng-repeat= "user in online_users" class="list-group-item {{user.subscribedClass}} {{user.active | activeState:user.active }}"><button class="btn btn-link link-black" ng-click="getChat(user)">{{user.email}}</h4></button>
+							<li ng-repeat= "user in online_users" class="list-group-item {{user.subscribedClass}} {{user.active | activeState:user.active }}">
+
+								<button class="btn btn-link link-black" ng-click="getChat(user)">
+									{{user.email}} 
+									<span class="info" ng-show="unread_messages(user.unread_messages)"> 
+												
+											<span class="badge"><i class="glyphicon glyphicon-envelope"></i>&nbsp; {{ user.unread_messages }}&nbsp;</span>
+									</span>
+								</button>
 						</ul>
 				
 		</div>

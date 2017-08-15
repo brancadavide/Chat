@@ -25,7 +25,7 @@ class UserJob < ApplicationJob
   private
 
   def map_chat(chats)
-  	chats.map {  |chat| { id: chat.id, email: chat.partner.email, subscribed: chat.partner.subscribed,partner_id: chat.partner.id, subscribedClass: chat.partner.subscribedClass,active: chat.active }  }
+  	chats.map {  |chat| { id: chat.id, email: chat.partner.email, subscribed: chat.partner.subscribed,unread_messages: chat.messages.where(status: "new").count,partner_id: chat.partner.id, subscribedClass: chat.partner.subscribedClass,active: chat.active }  }
   end
 
 
