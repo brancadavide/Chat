@@ -1,24 +1,15 @@
-# README
+Simple Chat-Example using ActionCable 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- Rails 5.1
+- devise
+- angularJS(angular 1)
+- bootstrap v3
 
-Things you may want to cover:
+Basically a simple example how to implement a simple chat by implementing ActionCable clientside and angular.
+Including features like :
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- new message notification
+- new message counter
+- message-staus notifications(sent, read)
+- notification when chat-partner is writing a message
+- user can switch between shown to other users as 'online' and 'offline'
