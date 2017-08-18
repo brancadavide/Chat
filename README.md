@@ -10,6 +10,6 @@ Including features like :
 
 - new message notification
 - new message counter
-- message-staus notifications(sent, read)
+- message-status notifications(sent, read)
 - notification when chat-partner is writing a message
 - user can switch between shown to other users as 'online' and 'offline'
